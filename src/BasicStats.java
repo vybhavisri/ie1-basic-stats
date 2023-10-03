@@ -27,6 +27,7 @@ public class BasicStats {
     CountView countView = new CountView();
     MeanView meanView = new MeanView();
     MedianView medianView = new MedianView();
+    MinMaxView minMaxView = new MinMaxView();
     ModeView modeView = new ModeView();
     NumbersView numbersView = new NumbersView();
     AddNumView addNumView = new AddNumView();
@@ -37,6 +38,7 @@ public class BasicStats {
     statsViews.add(countView);
     statsViews.add(medianView);
     statsViews.add(meanView);
+    statsViews.add(minMaxView);
     statsViews.add(modeView);
 
     /***** REGISTER MVC BLOCK *****/
@@ -150,6 +152,31 @@ public class BasicStats {
       }
 
       return mode;
+    }
+
+    public static double findMinMax(double... numbers) {
+    bubbleSort(numbers);
+
+    int size = numbers.length;
+    double min = 0.0;
+    //double max = 0.0;
+
+    if (size > 0) {
+        min = numbers[0];
+        //max = numbers[size - 1];
+    }
+
+    if (size > 1) {
+        if (size % 2 == 0) {
+            min = (numbers[size / 2 - 1] + numbers[size / 2]) / 2;
+            //max = (numbers[size / 2 - 1] + numbers[size / 2]) / 2;
+        } else {
+            min = numbers[size / 2];
+            //max = numbers[size / 2];
+        }
+    }
+
+    return min;  
     }
 
     //Helper method

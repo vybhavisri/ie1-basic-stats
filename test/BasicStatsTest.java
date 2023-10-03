@@ -86,4 +86,13 @@ public class BasicStatsTest {
       mode   = BasicStats.mode(numbers5);
       assertEquals (0, mode, EPS);
     }
+
+    @Test
+    public void testMinMax() {
+      double[] numbers = {2, 2, 3, 3, 3, 4, 4};
+      double min = BasicStats.min(numbers);
+      assertEquals(2, min, EPS);
+      //double max = BasicStats.max(numbers);
+      //assertEquals(4, max, EPS);
+    } 
 }
