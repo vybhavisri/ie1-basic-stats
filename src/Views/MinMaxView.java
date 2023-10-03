@@ -3,40 +3,58 @@ import java.util.Collections;
 
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
+import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 public class MinMaxView implements View {
 
     double min;
-    //double max;
-    JTextField jtfMinMax;
+    double max;
+    JTextField jtfMin;
+    JTextField jtfMax;
     String name;
 
     public MinMaxView() {
         min = 0;
-        //max = 0;
-        jtfMinMax = new JTextField(10);
-        jtfMinMax.setEditable(false);
+        max = 0;
+        jtfMin = new JTextField(10);
+        jtfMin.setEditable(false);
+        jtfMax = new JTextField(10);
+        jtfMax.setEditable(false);
         name = "Min/Max";
     }
 
     @Override
     public void update(ArrayList<Double> numbers) {
-        min = BasicStats.findMinMax(BasicStats.getArrayDouble(numbers));
-        //max = BasicStats.max(BasicStats.getArrayDouble(numbers));
+        min = BasicStats.min(BasicStats.getArrayDouble(numbers));
+        max = BasicStats.max(BasicStats.getArrayDouble(numbers));
 
-        jtfMinMax.setText("Min: " + min );
+        jtfMin.setText("Min: " + min );
+        jtfMax.setText("Max: " + max);
     }
 
     @Override
     public void reset() {
         min = 0;
-        //max = 0;
-        jtfMinMax.setText("");
+        max = 0;
+        jtfMin.setText("");
+        jtfMax.setText("");
     }
 
     @Override
     public JTextComponent show() {
-        return jtfMinMax;
+        JPanel panel = new JPanel(new FlowLayout());
+        panel.add(jtfMin);
+        panel.add(jtfMax);
+        
+        JScrollPane scrollPane = new JScrollPane(panel);
+        JTextPane textPane = new JTextPane();
+        textPane.insertComponent(scrollPane);
+
+        return textPane;
+       
     }
 
     @Override
@@ -48,7 +66,7 @@ public class MinMaxView implements View {
         return min;
     }
 
-    //public double getMax() {
-        //return max;
-    //}
+    public double getMax() {
+        return max;
+    }
 }

@@ -92,7 +92,7 @@ public class BasicStatsTest {
       double[] numbers = {2, 2, 3, 3, 3, 4, 4};
       double min = BasicStats.min(numbers);
       assertEquals(2, min, EPS);
-      //double max = BasicStats.max(numbers);
-      //assertEquals(4, max, EPS);
+      double max = BasicStats.max(numbers);
+      assertEquals(4, max, EPS);
     } 
 }

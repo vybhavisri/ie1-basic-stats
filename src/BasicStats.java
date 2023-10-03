@@ -154,30 +154,45 @@ public class BasicStats {
       return mode;
     }
 
-    public static double findMinMax(double... numbers) {
+    public static double min(double... numbers) {
     bubbleSort(numbers);
 
     int size = numbers.length;
-    double min = 0.0;
-    //double max = 0.0;
-
-    if (size > 0) {
-        min = numbers[0];
-        //max = numbers[size - 1];
+    if (size == 0) {
+        throw new IllegalArgumentException("Array is empty.");
     }
 
-    if (size > 1) {
-        if (size % 2 == 0) {
-            min = (numbers[size / 2 - 1] + numbers[size / 2]) / 2;
-            //max = (numbers[size / 2 - 1] + numbers[size / 2]) / 2;
-        } else {
-            min = numbers[size / 2];
-            //max = numbers[size / 2];
+    double min = numbers[0];
+
+    for (int i = 1; i < size; i++) {
+        if (numbers[i] < min) {
+            min = numbers[i];
         }
     }
 
-    return min;  
+    return min;
     }
+
+    public static double max(double... numbers) {
+    bubbleSort(numbers);
+
+    int size = numbers.length;
+    if (size == 0) {
+        throw new IllegalArgumentException("Array is empty.");
+    }
+
+    double max = numbers[0];
+
+    for (int i = 1; i < size; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+
+    return max;
+    }
+
+
 
     //Helper method
     public static void bubbleSort(double[] numArray) {
